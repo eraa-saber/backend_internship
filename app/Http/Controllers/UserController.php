@@ -69,14 +69,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -116,6 +109,19 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //delete user
+        $users = User::find($id);
+
+        if (!$users) {
+            return response()->json([
+                'message' => "User Not Found"
+            ], 404);
+        }
+
+        $users -> delete();
+
+        return response()->json([
+            'message' => "Successfully deleted."
+        ], 200);
     }
 }
