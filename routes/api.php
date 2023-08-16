@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ServiceController;
 use App\Models\User;
 
 /*
@@ -25,3 +26,7 @@ Route::get('users/{id}', [UserController::class, 'show']);
 Route::post('addnew', [UserController::class, 'store']);
 Route::put('userupdate/{id}', [UserController::class, 'update']);
 Route::delete('delete/{id}', [UserController::class, 'destroy']);
+
+Route::get('services',[ServiceController::class,'index']);
+Route::get('services/{id}',[ServiceController::class,'show']);
+Route::post('addservice',[ServiceController::class,'store']);
