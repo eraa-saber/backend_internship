@@ -45,7 +45,7 @@ class UserStoreRequest extends FormRequest
         if(request()->isMethod('post')){
             return [
                 'name.required' => 'Name is required!',
-                'email.requiredl' => 'Email is required!',
+                'email.required' => 'Email is required!',
                 'password.required' => 'Password is required!',
                 'phonenumber.required' => 'Phonenumber is required!'
             ];
@@ -53,7 +53,7 @@ class UserStoreRequest extends FormRequest
         else{
             return[
                 'name.required' => 'Name is required!',
-                'email.requiredl' => 'Email is required!',
+                'email.required' => 'Email is required!',
                 'password.required' => 'Password is required!',
                 'phonenumber.required' => 'Phonenumber is required!'
             ];

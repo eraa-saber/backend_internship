@@ -20,13 +20,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 //Users
 Route::get('users', [UserController::class, 'index']);
-Route::get('users/{id}', [UserController::class, 'show']);
-Route::post('addnew', [UserController::class, 'store']);
+Route::get('user/{id}', [UserController::class, 'show']);
+Route::post('adduser', [UserController::class, 'store']);
 Route::put('updateuser/{id}', [UserController::class, 'update']);
-Route::delete('delete/{id}', [UserController::class, 'destroy']);
+Route::delete('deleteuser/{id}', [UserController::class, 'destroy']);
 //Service
 Route::get('services', [ServiceController::class, 'index']);
-Route::get('services/{id}', [ServiceController::class, 'show']);
+Route::get('service/{id}', [ServiceController::class, 'show']);
 Route::post('addservice', [ServiceController::class, 'store']);
 Route::delete('deleteservice/{id}', [ServiceController::class, 'destroy']);
 Route::put('updateservice/{id}', [ServiceController::class, 'update']);
