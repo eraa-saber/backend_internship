@@ -21,35 +21,33 @@ class ServiceStoreRequest extends FormRequest
      */
     public function rules(): array
     {
-        if(request()->isMethod('post')){
-            return[
-                'name'=>'required|string',
-                'description'=>'required|string',
-                'status'=>'required|boolean'
+        if (request()->isMethod('post')) {
+            return [
+                'name' => 'required|string|max:258',
+                'description' => 'required|string',
+                'status' => 'required|boolean'
             ];
-        }
-        else{
-            return[
-                'name'=>'required|string',
-                'description'=>'required|string',
-                'status'=>'required|boolean'
+        } else {
+            return [
+                'name' => 'required|string|max:258',
+                'description' => 'required|string',
+                'status' => 'required|boolean'
             ];
         }
     }
     public function messages(): array
     {
-        if(request()->isMethod('post')){
-            return[
-                'name.required'=>'name is required',
-                'description'=>'description is required',
-                'status'=>'status is required'
+        if (request()->isMethod('post')) {
+            return [
+                'name.required' => 'name is required',
+                'description.required' => 'description is required',
+                'status.required' => 'status is required'
             ];
-        }
-        else{
-            return[
-                'name.required'=>'name is required',
-                'description'=>'description is required',
-                'status'=>'status is required'
+        } else {
+            return [
+                'name.required' => 'name is required',
+                'description.required' => 'description is required',
+                'status.required' => 'status is required'
             ];
         }
     }
