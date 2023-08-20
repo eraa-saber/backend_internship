@@ -23,34 +23,17 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(UserStoreRequest $request)
     {
-        //
+        [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'phonenumber' => $request->phonenumber
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(UserStoreRequest $request)
-    {
-        try {
-            //create user
-            User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => $request->password,
-                'phonenumber' => $request->phonenumber
-            ]);
 
-            return response()->json([
-                'message' => "Successfully created."
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-                'message' => "ERROR!!!"
-            ], 500);
-        }
-    }
 
     /**
      * Display the specified resource.
@@ -69,7 +52,7 @@ class UserController extends Controller
         ], 200);
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -96,7 +79,6 @@ class UserController extends Controller
             return response()->json([
                 'message' => "Successfully updated."
             ], 200);
-
         } catch (\Exception $e) {
             return response()->json([
                 'message' => "ERROR!!!"
@@ -118,7 +100,7 @@ class UserController extends Controller
             ], 404);
         }
 
-        $users -> delete();
+        $users->delete();
 
         return response()->json([
             'message' => "Successfully deleted."
