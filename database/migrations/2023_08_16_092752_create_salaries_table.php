@@ -18,7 +18,7 @@ return new class extends Migration
             $table->boolean('isTaxCompliant');
             $table->string('terrorismFunding');
             $table->string('paymentFunding');
-            $table->double('salary',20,8);
+            $table->boolean('status');
             $table->timestamps();
         });
     }
