@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\SalaryStoreRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Salary;
+
+
 
 class SalaryController extends Controller
 {
@@ -20,19 +23,32 @@ class SalaryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(UserStoreRequest $request)
+    public function create(SalaryStoreRequest $request)
     {
-        [
-            'id' => $request->id,
+        $file1 = $request->file('paymentFunding');
+        $fileName1 = time() . '.' . $file1->getClientOriginalExtension();
+        $request->file('paymentFunding')->storeAs('storage', $fileName1);
+        $path1 = "/storage/" . $fileName1;
+        $file2 = $request->file('terrorismFunding');
+        $fileName2 = time() . '.' . $file2->getClientOriginalExtension();
+        $request->file('terrorismFunding')->storeAs('storage', $fileName2);
+        $path2 = "/storage/" . $fileName2;
+        Storage::url($fileName1);
+        Storage::url($fileName2);
+        // Storage ::disk('local')->put($fileName1,$file1);
+        // Storage ::disk('local')->put($fileName2,$file2);
+        Salary::create(
 
-            'companyCommercialRegister' => $request->companyCommercialRegister,
-            'isRecordedAddedValue' => $request->isRecordedAddedValue,
-            'isTaxCompliant' => $request->isTaxCompliant,
-            'terrorismFunding' => $request->terrorismFunding,
-            'paymentFunding' => $request->paymentFunding,
-            'user_email' => $request->user_email,
-            'status' => $request->status,
-        ];
+            ['national_id' => $request->national_id] +
+                ['companyCommercialRegister' => $request->companyCommercialRegister] +
+                ['isTaxCompliant' => $request->isTaxCompliant] +
+                ['isRecordedAddedValue' => $request->isRecordedAddedValue] +
+                ['terrorismFunding' => $path2] +
+                ['paymentFunding' => $path1] +
+                ['status' => $request->status] + ['user_email' => Auth::user()->email]
+
+        );
+        // Storage::putFile('files', $fileName); // path -- file
     }
 
 
@@ -59,7 +75,7 @@ class SalaryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UserStoreRequest $request, string $id)
+    public function update(SalaryStoreRequest $request, string $id)
     {
         try {
             //find Salary
