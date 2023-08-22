@@ -18,6 +18,9 @@ return new class extends Migration
             $table->boolean('isTaxCompliant');
             $table->string('terrorismFunding');
             $table->string('paymentFunding');
+            $table->string('user_email');
+            $table->foreign('user_email')
+                ->references('email')->on('users');
             $table->boolean('status');
             $table->timestamps();
         });

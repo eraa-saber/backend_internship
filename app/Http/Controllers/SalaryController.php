@@ -24,11 +24,13 @@ class SalaryController extends Controller
     {
         [
             'id' => $request->id,
+
             'companyCommercialRegister' => $request->companyCommercialRegister,
             'isRecordedAddedValue' => $request->isRecordedAddedValue,
             'isTaxCompliant' => $request->isTaxCompliant,
             'terrorismFunding' => $request->terrorismFunding,
             'paymentFunding' => $request->paymentFunding,
+            'user_email' => $request->user_email,
             'status' => $request->status,
         ];
     }
@@ -41,6 +43,7 @@ class SalaryController extends Controller
     public function show($id)
     {
         $salary = Salary::find($id);
+
 
         if (!$salary) {
             return response()->json([
