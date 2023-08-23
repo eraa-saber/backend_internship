@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
-use App\Http\Requests\SalaryStoreRequest;
 use App\Models\User;
-use App\Models\Salary;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -34,7 +31,6 @@ class ApiAuthController extends Controller
         $response = ['token' => $token];
         return response($response, 200);
     }
-
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -61,7 +57,7 @@ class ApiAuthController extends Controller
             return response($response, 422);
         }
     }
-    public function logout(UserStoreRequest $request)
+    public function logout(Request $request)
     {
 
         $token = $request->user()->token();

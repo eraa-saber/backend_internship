@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('salaries', function (Blueprint $table) {
-            $table->id();
-            $table->string('national_id');
+            $table->string('id');
             $table->string('companyCommercialRegister');
             $table->boolean('isRecordedAddedValue');
             $table->boolean('isTaxCompliant');
