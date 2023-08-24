@@ -16,12 +16,13 @@ class Salary extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
+        'national_id',
         'companyCommercialRegister',
         'isRecordedAddedValue',
         'isTaxCompliant',
         'terrorismFunding',
         'paymentFunding',
-        'status'
+        'status',
+        'user_email'
     ];
 }
