@@ -25,11 +25,11 @@ class SalaryStoreRequest extends FormRequest
             return [
                 'national_id' => 'required|string',
                 'companyCommercialRegister' => 'required|string',
-                'isTaxCompliant' => 'required|boolean',
                 'isRecordedAddedValue' => 'required|boolean',
+                'isTaxCompliant' => 'required||boolean',
                 'terrorismFunding' => 'required|mimes:jpg,jpeg,png,pdf',
                 'paymentFunding' => 'required|mimes:jpg,jpeg,png,pdf',
-                'status' => 'required|boolean'
+               
             ];
         } else {
             return [
@@ -39,7 +39,7 @@ class SalaryStoreRequest extends FormRequest
                 'isTaxCompliant' => 'Tax Compliance is required',
                 'terrorismFunding' => 'Terrosim funding list is required',
                 'paymentFunding' => 'Payment funding list is required',
-                'status' => 'Status is required'
+                
             ];
         }
         // return [];
